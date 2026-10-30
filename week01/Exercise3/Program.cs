@@ -5,23 +5,41 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Hello Welcome to the Magic Number Game!");
-        Console.Write("What is your magic number? : ");
-        int magicNumber = int.Parse(Console.ReadLine());
+       
+       // using random number generator to generate a random number between 1 and 100
+        Random random = new Random();
+        int magicNumber = random.Next(1, 101);
+        int userGuess = 0;
+        int attempts = 0;
 
-        Console.Write("What is your guess? : ");
-        int guess = int.Parse(Console.ReadLine());
+        Console.WriteLine("I have selected a magic number between 1 and 100. Can you guess it?");
 
-        if (guess == magicNumber)
+        while (userGuess != magicNumber)
         {
-            Console.WriteLine("You guessed it!");
-        }
-        else if (guess < magicNumber)
-        {
-            Console.WriteLine("Higher!");
-        }
-        else
-        {
-            Console.WriteLine("Lower!");
+            Console.Write("Enter your guess: ");
+            string input = Console.ReadLine();
+
+            // Validate user input
+            if (!int.TryParse(input, out userGuess))
+            {
+                Console.WriteLine("Please enter a valid number.");
+                continue;
+            }
+
+            attempts++;
+
+            if (userGuess < magicNumber)
+            {
+                Console.WriteLine("Too low! Try again.");
+            }
+            else if (userGuess > magicNumber)
+            {
+                Console.WriteLine("Too high! Try again.");
+            }
+            else
+            {
+                Console.WriteLine($"Congratulations! You've guessed the magic number {magicNumber} in {attempts} attempts.");
+            }
         }
     }
 }
