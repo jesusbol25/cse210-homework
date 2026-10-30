@@ -4,34 +4,42 @@ class Program
 {
     static void Main(string[] args)
     {
-         int A = 90;
-         int B = 80;
-         int c = 70; 
-         int D = 60;
-         int F = 60;
+                  
         Console.Write("Please enter your percentage grade: ");
         string percenUser = Console.ReadLine();
         int grade = int.Parse(percenUser);
 
-        if (grade >= A)
+        string letter = "";
+
+        if (grade >= 90)
         {
-            Console.WriteLine("Congratulations! You're approved and your grade is A");
+            letter = "A";
         }
-        else if (grade >= B)
+        else if (grade >= 80)
         {
-            Console.WriteLine("Congratulations! You're approved and your grade is B");
+            letter = "B";
         }
-        else if (grade >= c)
+        else if (grade >= 70)
         {
-            Console.WriteLine("Congratulations! You're approved and your grade is C");
+            letter = "C";
         }
-        else if (grade >= D)
+        else if (grade >= 60)
         {
-            Console.WriteLine("Sorry, you're not approved and your grade is D");
+            letter = "D";
         }
         else
         {
-            Console.WriteLine("Your grade is F");
+            letter = "F";
+        } 
+        Console.WriteLine($"Your grade is {letter}");
+
+        if (grade >= 70)
+        {
+            Console.WriteLine("Congratulations! You passed the class!");
+        }
+        else
+        {
+            Console.WriteLine("Sorry, you did not pass the class study harder.");
         }
     }
 }
