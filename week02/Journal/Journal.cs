@@ -5,10 +5,10 @@ using System.Text.Json;
 
 public class Journal
 {
-    // La lista que guarda todas las entradas
+    // the list of entries in the journal
     public List<Entry> _entries = new List<Entry>();
 
-    // Método para mostrar todo en pantalla
+    // display all entries in the journal
     public void Display()
     {
         foreach (Entry entry in _entries)
@@ -17,27 +17,27 @@ public class Journal
         }
     }
 
-    // Método para guardar en JSON
+    // method to save json to a file
     public void SaveToFile(string filename)
     {
         // Configuramos cómo queremos que se vea el JSON
         JsonSerializerOptions options = new JsonSerializerOptions
         {
-            WriteIndented = true, // Le da un formato bonito y legible (con espacios)
-            IncludeFields = true  // Permite que lea tus variables con guion bajo (_)
+            WriteIndented = true, // give a visual indentation to the JSON
+            IncludeFields = true  // allow to read variable with (_)
         };
 
-        // Traduce la lista a texto JSON
+        // Translate the  list to a JOSON text
         string jsonString = JsonSerializer.Serialize(_entries, options);
         
-        // Crea el archivo y guarda el texto
+        // Create a file and write the JSON text into it
         File.WriteAllText(filename, jsonString);
     }
 
-    // Método para cargar desde JSON
+    // method to load from JSON
     public void LoadFromFile(string filename)
     {
-        // Verifica si el archivo existe para no generar un error
+        // Verify if the file exists before trying to read it
         if (File.Exists(filename))
         {
             // Lee todo el texto del archivo
@@ -48,12 +48,12 @@ public class Journal
                 IncludeFields = true
             };
 
-            // Traduce el texto JSON de vuelta a una lista de objetos Entry
+            // Translate the JSON text back to a list of Entry objects
             _entries = JsonSerializer.Deserialize<List<Entry>>(jsonString, options);
         }
         else
         {
-            Console.WriteLine("Error: El archivo no existe.");
+            Console.WriteLine("Error: The file does not exist.");
         }
 
         

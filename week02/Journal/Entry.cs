@@ -7,7 +7,7 @@ public class Entry
 
     public void Display()
     {
-        // Todo en una sola línea y sin el guion al principio
+        // everything in one line
         Console.WriteLine($"Date: {_date} - Prompt: {_promptText}");
         Console.WriteLine($"Entry: {_entryText}");
         Console.WriteLine();
