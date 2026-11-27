@@ -1,4 +1,4 @@
-
+//I improved the program adding the capacity to avoid repeating questions in the reflecting activity. Now, once a question is asked, it will be removed from the list of available questions until all questions have been asked, at which point the list will reset. This ensures that users are presented with a variety of questions during their reflection session.
 
 public class ReflectingActivity : Activity
 {
@@ -35,9 +35,18 @@ public class ReflectingActivity : Activity
         Console.WriteLine("Now, consider the following questions:");
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(GetDuration());
+
+        List<string> unusedQuestions = new List<string>(_questions);
         while (DateTime.Now < endTime)
         {
-            string question = _questions[random.Next(_questions.Count)];
+            if (unusedQuestions.Count == 0) 
+            {
+                
+                unusedQuestions = new List<string>(_questions);
+            }
+            int index = random.Next(unusedQuestions.Count);
+            string question = unusedQuestions[index];
+            unusedQuestions.RemoveAt(index);
             Console.WriteLine(question);
             ShowSpinner(10);
         }
